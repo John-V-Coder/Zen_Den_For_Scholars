@@ -26,7 +26,7 @@ DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['zen-den.onrender.com']
+ALLOWED_HOSTS = ['Zen_Den.onrender.com']
 
 
 # Application definition
