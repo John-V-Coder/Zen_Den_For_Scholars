@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Cool Websites</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+</head>
+<body>
+    <h1>Cool Websites</h1>
+    <div id="rooms-container"></div>
+
+    <script>
+        let roomsContainer = document.getElementById('rooms-container')
+
+        let getRooms = async () => {
+            try {
+                let response = await fetch('http://127.0.0.1:8000/api/rooms/')
+                let rooms = await response.json()
+                
+                let htmlContent = ''
+                for (let i = 0; i < rooms.length; i++) {
+                    let room = rooms[i]
+                    
+                    // Use template literals with backticks (`)
+                    htmlContent += `
+                        <div class="room">
+                            <h3>${room.name}</h3>  
+                        </div>
+                    `
+                }
+                
+                roomsContainer.innerHTML = htmlContent
+            } catch (error) {
+                console.error('Error fetching rooms:', error)
+                roomsContainer.innerHTML = '<p>Error loading rooms</p>'
+            }
+        }
+
+        getRooms()
+    </script>    
+</body>
+</html>
