@@ -43,6 +43,7 @@ packaging==25.0
 pandas==2.2.3
 pillow==11.1.0
 platformdirs==4.3.6
+psycopg2-binary==2.9.10
 pycparser==2.22
 pygame==2.6.1
 pyHanko==0.26.0
