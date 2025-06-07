@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: django-app
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn Zen Den.wsgi
+    envVars:
+      - key: DEBUG
+        value: False
