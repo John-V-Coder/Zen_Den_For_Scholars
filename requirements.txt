@@ -11,6 +11,7 @@ cssselect2==0.8.0
 cycler==0.12.1
 defusedxml==0.7.1
 distlib==0.3.9
+dj-database-url==3.0.0
 Django==5.1.6
 django-ckeditor==6.7.2
 django-cors-headers==4.7.0
