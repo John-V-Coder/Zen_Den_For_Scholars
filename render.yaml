@@ -1,9 +1,22 @@
+databases:
+  - name: postgres
+    databaseName: zendendb
+    user: zendendb_user
+
 services:
   - type: web
-    name: django-app
+    name: Zen_Den_For_Scholars
     runtime: python
-    buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn Zen Den.wsgi
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn Zen_Den.wsgi:application"
     envVars:
-      - key: DEBUG
-        value: False
+      - key: DATABASE_URL
+        fromDatabase:
+          name: postgres
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: WEB_CONCURRENCY
+        value: 4
+      - key: PYTHON_VERSION
+        value: 3.11.4
