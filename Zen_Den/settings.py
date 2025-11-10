@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY', get_random_secret_key())
-DEBUG = os.environ.get('DEBUG', 'False') == 'True'
+DEBUG = os.getenv('DEBUG', 'False').lower() == 'true'
 # SECURITY WARNING: don't run with debug turned on in production!
 
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',')
@@ -107,16 +107,14 @@ import dj_database_url
 DATABASE_URL = os.environ.get('DATABASE_URL')
 
 if DATABASE_URL and DATABASE_URL.startswith(('postgres://', 'postgresql://')):
-    # Use PostgreSQL (Render or other production DB)
     DATABASES = {
         'default': dj_database_url.config(
             default=DATABASE_URL,
             conn_max_age=600,
-            ssl_require=not DEBUG  # Require SSL only in production
+            ssl_require=not DEBUG  # Use SSL in production only
         )
     }
 else:
-    # Use local SQLite in development
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
